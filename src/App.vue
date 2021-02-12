@@ -1,26 +1,30 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container mx-auto max-w-max px-4 text-center">
+    <img
+      alt="Vue logo"
+      src="./assets/logo.png"
+      class="object-none object-center"
+    />
+  </div>
+  <layout />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import layout from './components/Layout';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    layout,
+  },
+  props: {},
+};
 </script>
 
+<style src="./assets/css/tailwind.css" />
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  background-color: rgba(12, 12, 12, 0.89);
 }
 </style>
