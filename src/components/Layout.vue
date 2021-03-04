@@ -21,6 +21,9 @@
 <script>
 import GameList from './GameList';
 import MenuList from './MenuList';
+import axios from 'axios';
+
+let url = 'http://localhost:5000/list/';
 
 export default {
   name: 'layout',
@@ -28,63 +31,48 @@ export default {
   emits: ['add-to-list'],
   data() {
     return {
-      games: [
-        {
-          name: 'Cyberpunk',
-          completed: true,
-        },
-        {
-          name: 'Fallout 4',
-          completed: false,
-        },
-        {
-          name: 'Call of Duty: Cold War',
-          completed: true,
-        },
-        {
-          name: 'Red Dead Redemption',
-          completed: false,
-        },
-        {
-          name: 'game five',
-          completed: false,
-        },
-        {
-          name: 'Game Six',
-          completed: false,
-        },
-        {
-          name: 'game Seven',
-          completed: false,
-        },
-        {
-          name: 'game Eight',
-          completed: false,
-        },
-        {
-          name: 'game Nine',
-          completed: false,
-        },
-        {
-          name: 'game Ten',
-          completed: false,
-        },
-      ],
-      lastIndex: 10,
+      games: [],
+      error: '',
     };
   },
   props: {},
   methods: {
-    addToList(value) {
-      this.games[this.lastIndex] = {
-        name: value.toString(),
-        completed: false,
-      };
-      this.lastIndex++;
+    getList() {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(url)
+          .then((res) => resolve((this.games = res.data)))
+          .catch(() => {
+            reject;
+          });
+      });
     },
-    swapInprogress(i) {
-      this.games[i].completed = !this.games[i].completed;
+    async addToList(value) {
+      let stringValue = value.toString();
+      await axios.post(url, { name: stringValue });
+      this.getList();
     },
+    async swapInprogress(i) {
+      let status;
+
+      this.games.map((el) => {
+        if (el._id == i) {
+          status = !el.completed;
+          return el;
+        }
+        return el;
+      });
+
+      await axios.put(`${url}${i}`, { id: i, completed: status });
+      this.getList();
+    },
+  },
+  async created() {
+    try {
+      this.games = await this.getList();
+    } catch (err) {
+      this.error = err.message;
+    }
   },
 };
 </script>
