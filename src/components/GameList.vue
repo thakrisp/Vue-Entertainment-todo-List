@@ -76,7 +76,7 @@
       <ul
         class="text-gray-700 text-center bg-gray-400 hover:text-white hover:bg-blue-500 m-2"
         v-for="i in completedList"
-        :key="i.name"
+        :key="i._id"
         @click="swapInprogress(i)"
       >
         {{
@@ -106,7 +106,7 @@ export default {
       this.$emit('add-to-list', this.inputText);
     },
     swapInprogress: function(i) {
-      this.$emit('swap-inprogress', this.games.indexOf(i));
+      this.$emit('swap-inprogress', i._id);
     },
     listSort(gamesList) {
       return gamesList.sort((a, b) => {
@@ -123,7 +123,6 @@ export default {
   computed: {
     inProgressList: function() {
       let sorted = this.listSort(this.games);
-      console.log(sorted);
       return sorted.filter((games) => games.completed === false);
     },
     completedList: function() {
