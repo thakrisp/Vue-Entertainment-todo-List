@@ -1,5 +1,5 @@
 const express = require('express');
-const { mongodb, ObjectId } = require('mongodb');
+const { ObjectId } = require('mongodb');
 const MongoClient = require('mongodb').MongoClient;
 
 const router = express.Router();
