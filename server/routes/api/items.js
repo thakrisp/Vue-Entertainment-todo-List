@@ -30,16 +30,21 @@ router.post('/', async (req, res) => {
 //update id from database
 router.put('/:id', async (req, res) => {
   const posts = await loadPostsCollection();
-  await posts.updateOne(
-    {
-      _id: ObjectId(`${req.body.id}`),
-    },
-    {
-      $set: {
-        completed: req.body.completed,
+
+  try {
+    await posts.updateOne(
+      {
+        _id: ObjectId(`${req.body.id}`),
       },
-    }
-  );
+      {
+        $set: {
+          completed: req.body.completed,
+        },
+      }
+    );
+  } catch (err) {
+    console.error(err);
+  }
   res.status(200).send('updated');
   console.log(`updated ${req.body.id} to ${req.body.completed}`);
 });
