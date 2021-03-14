@@ -128,8 +128,6 @@ export default {
     completedList: function() {
       let sorted = this.listSort(this.games);
       return sorted.filter((games) => games.completed === true);
-
-      //return this.games.filter((games) => games.completed === true);
     },
   },
 };
