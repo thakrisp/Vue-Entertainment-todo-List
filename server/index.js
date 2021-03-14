@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const posts = require('./routes/api/items');
+const posts = require('../server/routes/api/items');
 
 app.use('/api/items', posts);
 
