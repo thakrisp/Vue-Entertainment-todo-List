@@ -1,5 +1,5 @@
 {
-  "root": "dist",
+  "root": "server",
   "clean_urls": true,
   "routes": {
     "/**": "index.html"
