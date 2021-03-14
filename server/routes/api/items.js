@@ -12,7 +12,7 @@ let dbPassword = process.env.dbPassword;
 //get everything in database
 router.get('/', async (req, res) => {
   const posts = await loadPostsCollection();
-  res.send(await posts.find({}).toArray());
+  res.status(200).send(await posts.find({}).toArray());
 });
 
 //add to database
