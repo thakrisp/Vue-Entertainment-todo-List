@@ -23,7 +23,7 @@ import GameList from './GameList';
 import MenuList from './MenuList';
 import axios from 'axios';
 
-let url = 'api/items/';
+let url = 'items/';
 
 export default {
   name: 'layout',

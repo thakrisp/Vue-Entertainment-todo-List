@@ -4,7 +4,7 @@ module.exports = {
   outputDir: path.resolve(__dirname, './server/public'),
   devServer: {
     proxy: {
-      '/api': {
+      '/api/items': {
         target: 'http://localhost:5000',
       },
     },
