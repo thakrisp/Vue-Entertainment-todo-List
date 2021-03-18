@@ -65,6 +65,8 @@ async function loadPostsCollection() {
     }
   );
 
+  console.log('DB connected!');
+
   return client.db('EntertainmentToDoList').collection('Games');
 }
 
