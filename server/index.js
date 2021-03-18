@@ -11,13 +11,15 @@ const posts = require('../server/routes/api/items');
 
 app.use('/api/items', posts);
 
+console.log(__dirname + '/public/index.html');
+
 // Handle production
 if (process.env.NODE_ENV === 'production') {
   // Static folder
   app.use(express.static(__dirname + '/public/'));
 
   // Handle SPA
-  app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
+  app.get('/', (req, res) => res.sendFile(__dirname + '/public/index.html'));
 }
 
 const port = process.env.PORT || 5000;
