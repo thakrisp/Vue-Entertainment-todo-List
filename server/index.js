@@ -11,7 +11,7 @@ const posts = require('../server/routes/api/items');
 
 app.use('/api/items', posts);
 
-console.log(__dirname + '/public/index.html');
+console.log('Started!');
 
 // Handle production
 if (process.env.NODE_ENV === 'production') {
