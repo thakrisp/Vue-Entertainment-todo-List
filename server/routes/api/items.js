@@ -63,9 +63,11 @@ async function loadPostsCollection() {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     }
-  );
+  ).catch((err) => {
+    console.error(err);
+  });
 
-  console.log('DB connected!');
+  console.log('DB connected?');
 
   return client.db('EntertainmentToDoList').collection('Games');
 }

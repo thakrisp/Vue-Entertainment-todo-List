@@ -109,15 +109,19 @@ export default {
       this.$emit('swap-inprogress', i._id);
     },
     listSort(gamesList) {
-      return gamesList.sort((a, b) => {
-        if (a.name.toLowerCase() < b.name.toLowerCase()) {
-          return -1;
-        }
-        if (a.name > b.name) {
-          return 1;
-        }
-        return 0;
-      });
+      if (this.games.length > 0) {
+        return gamesList.sort((a, b) => {
+          if (a.name.toLowerCase() < b.name.toLowerCase()) {
+            return -1;
+          }
+          if (a.name > b.name) {
+            return 1;
+          }
+          return 0;
+        });
+      } else {
+        return this.games;
+      }
     },
   },
   computed: {
